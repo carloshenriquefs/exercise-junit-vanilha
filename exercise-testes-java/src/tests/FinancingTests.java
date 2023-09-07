@@ -4,13 +4,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import entities.Financing;
+import tests.factory.FinancingFactory;
 
 public class FinancingTests {
 
 	@Test
 	public void constructorShouldCreateObjectWhenValidData() {
 
-		Financing financing = new Financing(100000.0, 2000.0, 80);
+		Financing financing = FinancingFactory.createEmptyFinancing();
 
 		Assertions.assertEquals(100000.0, financing.getTotalAmount());
 		Assertions.assertEquals(2000.0, financing.getIncome());
@@ -21,7 +22,7 @@ public class FinancingTests {
 	public void constructorShouldThrowIllegalArgumentExceptionWhenInvalidData() {
 
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			Financing financing = new Financing(100000.0, 2000.0, 20);
+			Financing financing = FinancingFactory.createEmptyFinancingMonthDifferent();
 		});
 
 	}
@@ -29,7 +30,7 @@ public class FinancingTests {
 	@Test
 	public void setTotalAmountShouldSetDataWhenValidData() {
 
-		Financing financing = new Financing(100000.0, 2000.0, 80);
+		Financing financing = FinancingFactory.createEmptyFinancing();
 
 		financing.setTotalAmount(90000.0);
 
@@ -40,14 +41,14 @@ public class FinancingTests {
 	@Test
 	public void setTotalAmountShouldThrowIllegalArgumentExceptionWhenInvalidData() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			Financing financing = new Financing(100000.0, 2000.0, 80);
+			Financing financing = FinancingFactory.createEmptyFinancing();
 			financing.setTotalAmount(150000.0);
 		});
 	}
 
 	@Test
 	public void setIncomeShouldSetDataWhenValidData() {
-		Financing financing = new Financing(100000.0, 2000.0, 80);
+		Financing financing = FinancingFactory.createEmptyFinancing();
 
 		financing.setIncome(2100.0);
 
@@ -57,14 +58,14 @@ public class FinancingTests {
 	@Test
 	public void setIncomeShouldThrowIllegalArgumentExceptionWhenInvalidData() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			Financing financing = new Financing(100000.0, 2000.0, 20);
+			Financing financing = FinancingFactory.createEmptyFinancing();
 			financing.setIncome(1900.0);
 		});
 	}
 
 	@Test
 	public void setMonthsShouldSetDataWhenValidData() {
-		Financing financing = new Financing(100000.0, 2000.0, 80);
+		Financing financing = FinancingFactory.createEmptyFinancing();
 
 		financing.setMonths(81);
 
@@ -74,14 +75,14 @@ public class FinancingTests {
 	@Test
 	public void setMonthsShouldThrowIllegalArgumentExceptionWhenInvalidData() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			Financing financing = new Financing(100000.0, 2000.0, 80);
+			Financing financing = FinancingFactory.createEmptyFinancing();
 			financing.setMonths(79);
 		});
 	}
 
 	@Test
 	public void entryShouldCalculateEntryCorrectly() {
-		Financing financing = new Financing(100000.0, 2000.0, 80);
+		Financing financing = FinancingFactory.createEmptyFinancing();
 
 		Double entry = financing.entry();
 
@@ -91,14 +92,14 @@ public class FinancingTests {
 	@Test
 	public void shouldReturnsEntryThrowIllegalArgumentExceptionWhenInvalidData() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			Financing financing = new Financing(100000.0, 2000.0, 20);
+			Financing financing = FinancingFactory.createEmptyFinancingMonthDifferent();
 			financing.entry();
 		});
 	}
 
 	@Test
 	public void quotaShouldCalculateQuotaCorrectly() {
-		Financing financing = new Financing(100000.0, 2000.0, 80);
+		Financing financing = FinancingFactory.createEmptyFinancing();
 
 		Assertions.assertEquals(1000, financing.quota());
 	}
@@ -106,7 +107,7 @@ public class FinancingTests {
 	@Test
 	public void shouldReturnsQuotaThrowIllegalArgumentExceptionWhenInvalidData() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			Financing financing = new Financing(100000.0, 2000.0, 20);
+			Financing financing = FinancingFactory.createEmptyFinancingMonthDifferent();
 			financing.quota();
 		});
 	}
